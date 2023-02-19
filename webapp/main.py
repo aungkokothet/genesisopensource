@@ -17,6 +17,17 @@ app.mount("/ui", StaticFiles(directory=static_path), name="ui")
 class Body(BaseModel):
     length: Union[int, None] = 20
 
+class Patient(BaseModel):
+    name: str
+    dob: str
+    phone_number: str
+    nrc: str
+    address: str
+
+@app.post("/patients")
+async def create_patient(patient: Patient):
+    # code to create a new patient in the patient registry
+    return {"message": "Patient created successfully"}
 
 @app.get('/')
 def root():
